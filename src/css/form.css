@@ -1,0 +1,96 @@
+#date-picker-container{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 8px;
+
+  width: 275px;
+  height: 75px;
+}
+
+#date-picker-container #label{
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 10px;
+  
+  width: 275px;
+  height: 15px;
+}
+
+#label.label{
+  width: 27px;
+  height: 15px;
+
+  font-size: 14px;
+  line-height: 15px;
+  /* identical to box height */
+
+  /* Primary */
+  /*color: #5570F1;*/
+  color: whitesmoke;
+}
+
+#main {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 8px 16px;
+  gap: 10px;
+  
+  width: 275px;
+  height: 52px;
+  
+  /* Input/focusBackground */
+  background: rgba(233, 236, 248, 0.9);
+  border-radius: 8px;
+}
+
+#main #date-picker {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 16px;
+  
+  width: 243px;
+  height: 36px;
+}
+
+#date-picker .date-input {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 8px;
+  
+  width: 203px;
+  height: 36px;
+}
+
+#date-picker .date-content{
+  margin: 0 auto;
+  width: 203px;
+  /*height: 19px;*/
+  
+  font-size: 16px;
+  /*line-height: 19px;*/
+  
+  color: #5E6366;
+}
+
+#date-picker .date-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.icon {
+  position: absolute;
+  width: 18px;
+  height: 20px;
+  left: 3px;
+  top: 2px;
+}
