@@ -1,4 +1,5 @@
-import { utils } from "../utils/utils";
+import { displayUtils } from './displayUtils.js';
+import { domUtils } from './domUtils.js';
 
 export const calendarManager = {
   generateCalendar(calendarContainer, month, year) {
@@ -21,8 +22,8 @@ export const calendarManager = {
     // HELPER functions
     function createDaysOfWeekHeader() {
       // Create the header for days of the week
-      const headerRow = utils.createElement(document, 'div');
-      utils.addClass(headerRow, 'calendar-header');
+      const headerRow = domUtils.createElement(document, 'div');
+      displayUtils.addClass(headerRow, 'calendar-header');
       return headerRow;
     }
 
@@ -30,8 +31,8 @@ export const calendarManager = {
       const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
       daysOfWeek.forEach(day => {
         
-        const dayElement = utils.createElement(document, 'div');
-        utils
+        const dayElement = domUtils.createElement(document, 'div');
+        displayUtils
           .addClass(dayElement, 'calendar-day')
           .addTextContent(dayElement, day)
         headerRow.appendChild(dayElement);
@@ -41,16 +42,16 @@ export const calendarManager = {
 
     function createDaysGrid() {
       // Create the grid for the days
-      const daysGrid = utils.createElement(document, 'div');
-      utils.addClass(daysGrid, 'calendar-days');
+      const daysGrid = domUtils.createElement(document, 'div');
+      displayUtils.addClass(daysGrid, 'calendar-days');
       return daysGrid;
     }
 
     function appendBlankSpacesBeforeFirstDay(daysGrid, firstDay) {
       // Add blank spaces for days before the first day of the month
       for (let i = 0; i < firstDay; i++) {
-        const emptyCell = utils.createElement(document, 'div');
-        utils.addClass(emptyCell, 'calendar-day-empty');
+        const emptyCell = domUtils.createElement(document, 'div');
+        displayUtils.addClass(emptyCell, 'calendar-day-empty');
         daysGrid.appendChild(emptyCell);
       }
     }
@@ -58,8 +59,8 @@ export const calendarManager = {
     function appendMonthDaysToGrid(daysGrid, daysInMonth) {
       // Add the days of the month
       for (let day = 1; day <= daysInMonth; day++) {
-        const dayCell = utils.createElement(document, 'div');
-        utils
+        const dayCell = domUtils.createElement(document, 'div');
+        displayUtils
           .addClass(dayCell, 'calendar-day')
           .addTextContent(dayCell, day)
         daysGrid.appendChild(dayCell);
