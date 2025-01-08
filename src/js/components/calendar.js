@@ -6,7 +6,7 @@ export const calendarManager = {
     console.info("generateCalendar()");
     calendarContainer.innerHTML = ''; // Clear any existing calendar content
 
-    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const daysInMonth = new Date(year, month + 1, 0).getDate(); // [LE02] Calculate Days in Month and First Day of the Month:
     const firstDay = new Date(year, month, 1).getDay();
     
     // Create the header for days of the week
