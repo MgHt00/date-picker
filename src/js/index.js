@@ -1,5 +1,3 @@
-console.info("dummy log");
-
 import { Global } from "./services/global.js";
 import { listenerManager } from "./services/listeners.js";
 
