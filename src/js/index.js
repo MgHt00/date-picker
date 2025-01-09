@@ -5,5 +5,6 @@ const globalInstance = new Global();
 
 (function initialize(){
   console.info("initialize()");
-  listenerManager.documentListners(globalInstance);
+  listenerManager
+    .documentListners(globalInstance)
 })();

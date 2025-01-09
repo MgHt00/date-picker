@@ -1,5 +1,6 @@
 import { Global } from "../services/global.js";
 import { calendarManager } from "../components/calendar.js";
+import { displayUtils } from "./displayUtils.js";
 
 const globalInstance = new Global();
 
@@ -19,5 +20,16 @@ export const helpers = {
     const currentYear = new Date().getFullYear(); // Current year
 
     calendarManager.generateCalendar(calendarContainer, currentMonth, currentYear);
+  },
+
+  onCalendarDayClick(selectedDay){
+    console.count("day click:");
+    console.info("%s is clicked", selectedDay);
+
+    const dateInput = globalInstance.dateInput;
+    const calendarContainer = globalInstance.calendarContainer;
+    displayUtils
+      .addTextContent(dateInput, selectedDay)
+      .addClass(calendarContainer, 'hidden');
   }
 }

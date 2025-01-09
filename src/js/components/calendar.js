@@ -1,5 +1,6 @@
 import { displayUtils } from "../utils/displayUtils.js";
 import { domUtils } from "../utils/domUtils.js";
+import { listenerManager } from "../services/listeners.js";
 
 export const calendarManager = {
   generateCalendar(calendarContainer, month, year) { // [LE03]
@@ -25,6 +26,8 @@ export const calendarManager = {
       appendBlankSpacesBeforeFirstDay(daysGrid, firstDay);
       appendMonthDaysToGrid(daysGrid, daysInMonth)
       calendarContainer.appendChild(daysGrid);
+
+      listenerManager.addCalendarDayListeners();
 
     } catch (error) {
       console.error(error.message);

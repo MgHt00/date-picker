@@ -1,3 +1,9 @@
+html {
+  --form-background: rgba(233, 236, 248, 0.9);
+  --label-color: whitesmoke;
+  --date-content-color: #5E6366;
+}
+
 #date-picker-container{
   display: flex;
   flex-direction: column;
@@ -30,7 +36,7 @@
 
   /* Primary */
   /*color: #5570F1;*/
-  color: whitesmoke;
+  color: var(--label-color, whitesmoke);
 }
 
 #main {
@@ -44,7 +50,7 @@
   height: 52px;
   
   /* Input/focusBackground */
-  background: rgba(233, 236, 248, 0.9);
+  background: var(--form-background, rgba(233, 236, 248, 0.9)) ;
   border-radius: 8px;
 }
 
@@ -66,6 +72,8 @@
   align-items: flex-start;
   padding: 0px;
   gap: 8px;
+  background: none;
+  border: none;
   
   width: 203px;
   height: 36px;
@@ -79,7 +87,7 @@
   font-size: 16px;
   /*line-height: 19px;*/
   
-  color: #5E6366;
+  color: var(--date-content-color, #5E6366);
 }
 
 #date-picker .date-icon {

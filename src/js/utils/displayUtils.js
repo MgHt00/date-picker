@@ -34,7 +34,11 @@ export const displayUtils = {
   },
 
   addTextContent(targetElement, content) {
-    targetElement.textContent = content;
+    if (targetElement.tagName.toLowerCase() === 'input') {
+      targetElement.value = content; // If it's an input element, update its value
+    } else {
+      targetElement.textContent = content;
+    }
     return this;
   },
 };
