@@ -44,9 +44,12 @@ export const helpers = {
     // Format for user display (DD-MM-YYYY)
     const formattedDateForUI = globalInstance.dateManager.formatDateForDisplay(fullDateForDB);
 
+    // Highlight selected day
+    // globalInstance.dateManager.highlightSelectedDay(selectedDay);
+
     // Display the formatted date on the input field (DD-MM-YYYY for UI)
     displayUtils
       .addTextContent(dateInput, formattedDateForUI)
-      .hide(calendarContainer);
+      //.hide(calendarContainer);
   }
 }

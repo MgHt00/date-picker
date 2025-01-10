@@ -46,7 +46,6 @@ export const calendarManager = {
     function appendDaysOfWeekToHeader(headerRow){
       const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
       daysOfWeek.forEach(day => {
-        
         const dayElement = domUtils.createElement(document, 'div');
         displayUtils
           .addClass(dayElement, 'calendar-day')
@@ -79,6 +78,8 @@ export const calendarManager = {
         displayUtils
           .addClass(dayCell, 'calendar-day')
           .addTextContent(dayCell, day)
+        domUtils
+          .addID(dayCell, `calendar-day-${day}`);
         daysGrid.appendChild(dayCell);
       }
     }

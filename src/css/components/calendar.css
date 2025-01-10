@@ -2,6 +2,7 @@ html {
   --calendar-header-background: #f4f4f4;
   --calendar-day-background: #f9f9f9;
   --calendar-day-hover: #e0e0e0;
+  --calendar-day-selected: #f4a380;
 }
 
 #date-picker-container{
@@ -73,4 +74,8 @@ html {
 
 .calendar-day:hover {
   background-color: var(--calendar-day-hover, #e0e0e0);
+}
+
+.calendar-day.selected-day {
+  background-color: var(--calendar-day-selected, #f4a380);
 }
