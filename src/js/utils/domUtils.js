@@ -14,4 +14,12 @@ export const domUtils = {
 
     return target.createElement(elementType);
   },
+
+  addID(targetElement, id){
+    if (validationUtils.isValidHTMLElement(targetElement)) {
+      targetElement.id = id;
+    } else {
+      console.error('Provided target is not a valid HTML element.');
+    }
+  }
 };

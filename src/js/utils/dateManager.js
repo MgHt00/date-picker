@@ -1,3 +1,5 @@
+import { displayUtils } from "./displayUtils.js";
+
 export class DateManager {
   constructor() {
     this.fullDateForDB = null;
@@ -14,5 +16,11 @@ export class DateManager {
   formatDateForDisplay(date) {
     const [year, month, day] = date.split('-');
     return `${day}-${month}-${year}`; // Convert YYYY-MM-DD to DD-MM-YYYY
+  }
+
+  highlightSelectedDay(day) {
+    const selectedDay = `calendar-day-${day}`;
+    const selectedDOM = document.querySelector(`#${selectedDay}`);
+    displayUtils.addClass(selectedDOM, 'selected-day');
   }
 }

@@ -78,7 +78,9 @@ export const calendarManager = {
         const dayCell = domUtils.createElement(document, 'div');
         displayUtils
           .addClass(dayCell, 'calendar-day')
-          .addTextContent(dayCell, day)
+          .addTextContent(dayCell, day);
+        domUtils
+          .addID(dayCell, `calendar-day-${day}`);
         daysGrid.appendChild(dayCell);
       }
     }
