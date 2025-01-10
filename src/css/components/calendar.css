@@ -1,3 +1,9 @@
+html {
+  --calendar-header-background: #f4f4f4;
+  --calendar-day-background: #f9f9f9;
+  --calendar-day-hover: #e0e0e0;
+}
+
 #date-picker-container{
   position: relative; 
 }
@@ -29,7 +35,7 @@
 .calendar-header {
   display: flex;
   justify-content: space-between;
-  background-color: #f4f4f4;
+  background-color: var(--calendar-header-background, #f4f4f4);
   border-radius: 5px;
   width: calc(100% - 20px); /* Subtracting padding (10px on each side) */
   box-sizing: border-box;
@@ -53,14 +59,10 @@
   height: 33px;
   line-height: 33px;
   border-radius: 50%;
-  background-color: #f9f9f9;
+  background-color: var(--calendar-day-background, #f9f9f9);
   color: #5E6366;
   cursor: pointer;
   box-sizing: border-box;
-}
-
-.calendar-day:hover {
-  background-color: #f1f1f1;
 }
 
 .calendar-day-empty {
@@ -70,5 +72,5 @@
 }
 
 .calendar-day:hover {
-  background-color: #e0e0e0;
+  background-color: var(--calendar-day-hover, #e0e0e0);
 }
