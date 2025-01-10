@@ -22,14 +22,23 @@ export const helpers = {
     calendarManager.generateCalendar(calendarContainer, currentMonth, currentYear);
   },
 
-  onCalendarDayClick(selectedDay){
-    console.count("day click:");
-    console.info("%s is clicked", selectedDay);
+  onCalendarDayClick(selectedDay, month, year){
+    /*console.info("%s is clicked", selectedDay);*/
 
     const dateInput = globalInstance.dateInput;
     const calendarContainer = globalInstance.calendarContainer;
+
+    // Construct the full date in YYYY-MM-DD format (for database storage)
+    const fullDateForDB = new Date(year, month, selectedDay).toISOString().split('T')[0]; // Store this in DB
+    globalInstance.dateManager.setFullDate(fullDateForDB);
+    console.info("Full date: %s stored to Globals.", globalInstance.dateManager.getFullDate());
+
+    // Format for user display (DD-MM-YYYY)
+    const formattedDateForUI = globalInstance.dateManager.formatDateForDisplay(fullDateForDB);
+
+    // Display the formatted date on the input field (DD-MM-YYYY for UI)
     displayUtils
-      .addTextContent(dateInput, selectedDay)
+      .addTextContent(dateInput, formattedDateForUI)
       .addClass(calendarContainer, 'hidden');
   }
 }

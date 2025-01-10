@@ -27,7 +27,7 @@ export const calendarManager = {
       appendMonthDaysToGrid(daysGrid, daysInMonth)
       calendarContainer.appendChild(daysGrid);
 
-      listenerManager.addCalendarDayListeners();
+      listenerManager.addCalendarDayListeners(month, year);
 
     } catch (error) {
       console.error(error.message);

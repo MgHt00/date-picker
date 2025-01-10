@@ -3,7 +3,7 @@ import { domUtils } from './domUtils.js';
 
 export const displayUtils = {
   show(target) {
-    return target.classList.add('visible');
+    target.classList.add('visible');
   },
 
   addClass(targetElements, className) {
