@@ -23,13 +23,21 @@ export const helpers = {
   },
 
   onCalendarDayClick(selectedDay, month, year){
-    /*console.info("%s is clicked", selectedDay);*/
+    console.info("seletedDay: %s", selectedDay);
+    console.info("month: %s", month);
+    console.info("year: %s", year);
 
     const dateInput = globalInstance.dateInput;
     const calendarContainer = globalInstance.calendarContainer;
 
-    // Construct the full date in YYYY-MM-DD format (for database storage)
-    const fullDateForDB = new Date(year, month, selectedDay).toISOString().split('T')[0]; // Store this in DB
+    // Construct the date object in local time zone
+    const localDate = new Date(year, month, selectedDay);
+
+    // Manually format the date as YYYY-MM-DD (without time zone adjustments)
+    const fullDateForDB = `${localDate.getFullYear()}-${String(localDate.getMonth() + 1).padStart(2, '0')}-${String(localDate.getDate()).padStart(2, '0')}`;
+    /*const fullDateForDB = new Date(year, month, selectedDay).toISOString().split('T')[0]; // with time zone adjustment */
+
+    // Store the date in global instance
     globalInstance.dateManager.setFullDate(fullDateForDB);
     console.info("Full date: %s stored to Globals.", globalInstance.dateManager.getFullDate());
 
@@ -39,6 +47,6 @@ export const helpers = {
     // Display the formatted date on the input field (DD-MM-YYYY for UI)
     displayUtils
       .addTextContent(dateInput, formattedDateForUI)
-      .addClass(calendarContainer, 'hidden');
+      .hide(calendarContainer);
   }
 }

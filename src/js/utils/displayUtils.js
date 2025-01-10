@@ -3,7 +3,23 @@ import { domUtils } from './domUtils.js';
 
 export const displayUtils = {
   show(target) {
-    target.classList.add('visible');
+    if (validationUtils.isValidHTMLElement(target)) {
+      this
+        .removeClass(target, 'hidden')
+        .addClass(target, 'visible');
+    } else {
+      console.warn('Invalid target element:', target);
+    }
+  },
+
+  hide(target){
+    if (validationUtils.isValidHTMLElement(target)) {
+      this
+        .removeClass(target, 'visible')
+        .addClass(target, 'hidden');
+    } else {
+      console.warn('Invalid target element:', target);
+    }
   },
 
   addClass(targetElements, className) {

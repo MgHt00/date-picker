@@ -10,4 +10,8 @@ export const validationUtils = {
   isNonEmptyString(value) {
     return typeof value === 'string' && value.trim() !== '';
   },
+
+  isValidHTMLElement(element) {
+    return element instanceof HTMLElement;
+  },
 };

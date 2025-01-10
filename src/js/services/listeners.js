@@ -1,7 +1,7 @@
 import { helpers } from "../utils/helpers.js";
 /*import { calendarManager } from "../components/calendar.js";*/
 
-export const listenerManager = {
+export const listeners = {
   documentListners(globalInstance){
     const dateIcon = globalInstance.dateIcon;
     dateIcon.addEventListener('click', helpers.showCalendar);
