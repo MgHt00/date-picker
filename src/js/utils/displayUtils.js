@@ -27,8 +27,27 @@ export const displayUtils = {
     if (!validationUtils.isNonEmptyString(className)) return this;
 
     targetElements.forEach(element => {
-      if (element) element.classList.add(className);
+      if (element) element.classList.add(className); // [LE05]
     });
+    return this;
+  },
+
+  addMultipleClass(targetElements, classNames = []) {
+    targetElements = validationUtils.checkAndConvertArray(targetElements);
+    classNames = validationUtils.checkAndConvertArray(classNames);
+    if(classNames.some(className => !validationUtils.isNonEmptyString(className))) {
+      console.error('Invalid class names array');
+      return this;
+    }
+
+    targetElements.forEach(element => {
+      if(element) {
+        classNames.forEach(className => {
+          displayUtils.addClass(element, className)
+        });
+      }
+    });
+
     return this;
   },
 
