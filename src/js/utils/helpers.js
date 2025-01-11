@@ -19,10 +19,11 @@ export const helpers = {
     const currentMonth = new Date().getMonth(); // Current month (0-11)
     const currentYear = new Date().getFullYear(); // Current year
 
-    calendarManager.generateCalendar(calendarContainer, currentMonth, currentYear);
+    calendarManager.generateCalendar(globalInstance, currentMonth, currentYear);
   },
 
   onCalendarDayClick(selectedDay, month, year){
+    console.groupCollapsed("onCalendarDayClick()");
     const dateInput = globalInstance.dateInput;
     const calendarContainer = globalInstance.calendarContainer;
 
@@ -44,7 +45,8 @@ export const helpers = {
     // Display the formatted date on the input field (DD-MM-YYYY for UI)
     displayUtils
       .addTextContent(dateInput, formattedDateForUI)
-      //.hide(calendarContainer);
+      .hide(calendarContainer);
     
+    console.groupEnd();
   },
 }

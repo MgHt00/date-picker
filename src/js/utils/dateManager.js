@@ -19,11 +19,8 @@ export class DateManager {
   }
 
   highlightSelectedDay(selectedDay) {
-    console.group("selectedDay");
-    //const selectedDay = `calendar-day-${day}`;
-    console.info("selectedDay:", selectedDay);
+    console.info("highlightSelectedDay(), selectedDay:", selectedDay);
     const selectedDOM = document.querySelector(`#${selectedDay}`);
     displayUtils.addClass(selectedDOM, 'selected-day');
-    console.groupEnd();
   }
 }
