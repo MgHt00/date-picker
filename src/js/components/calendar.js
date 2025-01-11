@@ -13,6 +13,10 @@ export const calendarManager = {
       const daysInMonth = new Date(year, month + 1, 0).getDate(); // [LE02] Calculate Days in Month and First Day of the Month:
       const firstDay = new Date(year, month, 1).getDay(); // Calculates which day of the week the 1st day of the month falls on (0 = Sunday, 1 = Monday, etc.)
 
+      // Create the navigation buttons
+      const navigationRow = createNavigationRow(month, year);
+      calendarContainer.appendChild(navigationRow);
+
       // Create the header for days of the week
       const headerRow = createDaysOfWeekHeader();
       calendarContainer.appendChild(appendDaysOfWeekToHeader(headerRow));
@@ -33,6 +37,65 @@ export const calendarManager = {
     }
 
     // HELPER functions
+    function createNavigationRow(month, year) {
+      const navRow = domUtils.createElement(document, 'div');
+      displayUtils.addClass(navRow, 'calendar-navigation');
+
+      // Create the previous button
+      const prevButton = domUtils.createElement(document, 'button');
+      displayUtils.addClass(prevButton, 'calendar-nav-button');
+      displayUtils.addTextContent(prevButton, '<');
+
+      // Remove any existing event listener before adding a new one
+      prevButton.removeEventListener('click', changeMonth);
+      prevButton.addEventListener('click', () => changeMonth(-1)); // Previous month
+
+      // Format the month to display its full name
+      const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+      const formattedMonth = monthNames[month];
+
+      // Display month and year
+      const currentMonth = domUtils.createElement(document, 'span');
+      displayUtils.addClass(currentMonth, 'calendar-nav-info');
+      displayUtils.addTextContent(currentMonth, formattedMonth);
+
+      const currentYear = domUtils.createElement(document, 'span');
+      displayUtils.addClass(currentYear, 'calendar-nav-info');
+      displayUtils.addTextContent(currentYear, year);
+
+      // Create the next button
+      const nextButton = domUtils.createElement(document, 'button');
+      displayUtils.addClass(nextButton, 'calendar-nav-button');
+      displayUtils.addTextContent(nextButton, '>');
+      
+      // Remove any existing event listener before adding a new one
+      nextButton.removeEventListener('click', changeMonth);
+      nextButton.addEventListener('click', () => changeMonth(1)); // Next month
+
+      // Append all elements to the navigation row
+      navRow.appendChild(prevButton);
+      navRow.appendChild(currentMonth);
+      navRow.appendChild(currentYear);
+      navRow.appendChild(nextButton);
+
+      return navRow;
+    }
+
+    // Change the month and adjust the year accordingly
+    function changeMonth(direction) {
+      month += direction;
+      if (month < 0) {
+        month = 11;
+        year -= 1;
+      } else if (month > 11) {
+        month = 0;
+        year += 1;
+      }
+
+      // Generate the updated calendar for the new month and year
+      calendarManager.generateCalendar(globalInstance, month, year);
+    }
+
     // Creates a div element to serve as the header for the calendar 
     function createDaysOfWeekHeader() {
       const headerRow = domUtils.createElement(document, 'div');

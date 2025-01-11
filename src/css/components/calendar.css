@@ -79,3 +79,22 @@ html {
 .calendar-day.selected-day {
   background-color: var(--calendar-day-selected, #ffb27e);
 }
+
+.calendar-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.calendar-nav-button {
+  font-size: 16px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.calendar-nav-info {
+  font-size: 18px;
+  font-weight: bold;
+}
+
