@@ -1,17 +1,11 @@
 import { displayUtils } from "../utils/displayUtils.js";
 import { domUtils } from "../utils/domUtils.js";
 import { listeners } from "../services/listeners.js";
+import { Global } from "../services/global.js";
 
 export const calendarManager = {
   generateCalendar(calendarContainer, month, year) { // [LE03]
-    console.info("generateCalendar()");
-
     try {
-      // Validate calendarContainer before proceeding
-      if (!(calendarContainer instanceof HTMLElement)) {
-        throw new Error('Invalid calendar container');
-      }
-
       calendarContainer.innerHTML = ''; // Clear any existing calendar content
 
       const daysInMonth = new Date(year, month + 1, 0).getDate(); // [LE02] Calculate Days in Month and First Day of the Month:
@@ -27,7 +21,9 @@ export const calendarManager = {
       appendMonthDaysToGrid(daysGrid, daysInMonth)
       calendarContainer.appendChild(daysGrid);
 
+      //calendarManager.checkSelectedDay();
       listeners.addCalendarDayListeners(month, year);
+
 
     } catch (error) {
       console.error(error.message);
@@ -80,10 +76,31 @@ export const calendarManager = {
           .addClass(dayCell, 'calendar-day')
           .addTextContent(dayCell, day);
         domUtils
-          .addID(dayCell, `calendar-day-${day}`);
+          .addID(dayCell, `calendar-day-${String(day).padStart(2, '0')}`);
         daysGrid.appendChild(dayCell);
       }
     }
     // HELPER ends
   },
+
+  checkSelectedDay(globalInstance) {
+    const selectedDate = globalInstance.dateManager.getFullDate();
+
+    if (!selectedDate) {
+        console.info("selectedDate is null or undefined.");
+        return; // Exit the function if selectedDate is falsy
+    }
+
+    // Validate date format (simple regex for YYYY-MM-DD)
+    const datePattern = /^\d{4}-\d{2}-\d{2}$/;
+    if (!datePattern.test(selectedDate)) {
+        console.error("selectedDate is not in the expected YYYY-MM-DD format.");
+        return;
+    }
+
+    const [year, month, day] = selectedDate.split('-');
+    const selectedDayId = `calendar-day-${day}`;
+    console.info("selectedDay:", selectedDayId);
+    globalInstance.dateManager.highlightSelectedDay(selectedDayId);
+},
 }

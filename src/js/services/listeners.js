@@ -4,12 +4,13 @@ import { helpers } from "../utils/helpers.js";
 export const listeners = {
   documentListners(globalInstance){
     const dateIcon = globalInstance.dateIcon;
+    
     dateIcon.addEventListener('click', helpers.showCalendar);
     return this;
   },
 
   addCalendarDayListeners(month, year){
-    console.log("%s initiated", "calendarListener()");
+    /*console.log("%s initiated", "calendarListener()");*/
     const allDays = document.querySelectorAll('.calendar-day');
     
     allDays.forEach(day => {

@@ -18,9 +18,12 @@ export class DateManager {
     return `${day}-${month}-${year}`; // Convert YYYY-MM-DD to DD-MM-YYYY
   }
 
-  highlightSelectedDay(day) {
-    const selectedDay = `calendar-day-${day}`;
+  highlightSelectedDay(selectedDay) {
+    console.group("selectedDay");
+    //const selectedDay = `calendar-day-${day}`;
+    console.info("selectedDay:", selectedDay);
     const selectedDOM = document.querySelector(`#${selectedDay}`);
     displayUtils.addClass(selectedDOM, 'selected-day');
+    console.groupEnd();
   }
 }
