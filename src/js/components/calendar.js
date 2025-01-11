@@ -1,17 +1,13 @@
 import { displayUtils } from "../utils/displayUtils.js";
 import { domUtils } from "../utils/domUtils.js";
 import { listeners } from "../services/listeners.js";
+import { Global } from "../services/global.js";
 
 export const calendarManager = {
-  generateCalendar(calendarContainer, month, year) { // [LE03]
-    console.info("generateCalendar()");
+  generateCalendar(globalInstance, month, year) { // [LE03]
+    const calendarContainer = globalInstance.calendarContainer;
 
     try {
-      // Validate calendarContainer before proceeding
-      if (!(calendarContainer instanceof HTMLElement)) {
-        throw new Error('Invalid calendar container');
-      }
-
       calendarContainer.innerHTML = ''; // Clear any existing calendar content
 
       const daysInMonth = new Date(year, month + 1, 0).getDate(); // [LE02] Calculate Days in Month and First Day of the Month:
@@ -27,7 +23,9 @@ export const calendarManager = {
       appendMonthDaysToGrid(daysGrid, daysInMonth)
       calendarContainer.appendChild(daysGrid);
 
+      calendarManager.checkSelectedDay(globalInstance);
       listeners.addCalendarDayListeners(month, year);
+
 
     } catch (error) {
       console.error(error.message);
@@ -77,12 +75,28 @@ export const calendarManager = {
         const dayCell = domUtils.createElement(document, 'div');
         displayUtils
           .addClass(dayCell, 'calendar-day')
-          .addTextContent(dayCell, day)
+          .addTextContent(dayCell, day);
         domUtils
-          .addID(dayCell, `calendar-day-${day}`);
+          .addID(dayCell, `calendar-day-${String(day).padStart(2, '0')}`);
         daysGrid.appendChild(dayCell);
       }
     }
     // HELPER ends
+  },
+
+  checkSelectedDay(globalInstance) {
+    const selectedDate = globalInstance.dateManager.getFullDate();
+
+    if (selectedDate) { // if selectedDate is not null, (not the first time seeing the calendar)
+      const datePattern = /^\d{4}-\d{2}-\d{2}$/; // Validate date format (simple regex for YYYY-MM-DD)
+      if (!datePattern.test(selectedDate)) {
+        console.error("selectedDate is not in the expected YYYY-MM-DD format.");
+        return;
+      }
+
+      const [year, month, day] = selectedDate.split('-');
+      const selectedDayId = `calendar-day-${String(day).padStart(2, '0')}`; // Pad day to ensure two digits
+      globalInstance.dateManager.highlightSelectedDay(selectedDayId);
+    }
   },
 }

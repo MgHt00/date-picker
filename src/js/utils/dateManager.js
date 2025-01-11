@@ -1,4 +1,4 @@
-import { displayUtils } from "./displayUtils";
+import { displayUtils } from "./displayUtils.js";
 
 export class DateManager {
   constructor() {
@@ -18,10 +18,9 @@ export class DateManager {
     return `${day}-${month}-${year}`; // Convert YYYY-MM-DD to DD-MM-YYYY
   }
 
-  highlightSelectedDay(day) {
-    const targetDay = `calendar-day-${day}`;
-    console.info("targetDay, %s", targetDay);
-
-    //displayUtils.addClass(targetDay, 'selected-day');
+  highlightSelectedDay(selectedDay) {
+    console.info("highlightSelectedDay(), selectedDay:", selectedDay);
+    const selectedDOM = document.querySelector(`#${selectedDay}`);
+    displayUtils.addClass(selectedDOM, 'selected-day');
   }
 }
