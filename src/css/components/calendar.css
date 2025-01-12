@@ -1,6 +1,7 @@
 html {
   --calendar-header-background: #f4f4f4;
   --calendar-day-background: #f9f9f9;
+  --calendar-day-color: #5E6366;
   --calendar-day-hover: #e0e0e0;
   --calendar-day-selected: #ffb27e;
 }
@@ -61,7 +62,7 @@ html {
   line-height: 33px;
   border-radius: 50%;
   background-color: var(--calendar-day-background, #f9f9f9);
-  color: #5E6366;
+  color: var(--calendar-day-color, #5E6366);
   cursor: pointer;
   box-sizing: border-box;
 }
@@ -83,18 +84,32 @@ html {
 .calendar-navigation {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   gap: 10px;
+  margin-bottom: 6px;
 }
 
 .calendar-nav-button {
-  font-size: 16px;
+  font-size: 12px;
+  font-weight: bold;
   padding: 5px 10px;
   cursor: pointer;
+  border: none;
+  background-color: var(--calendar-header-background, #f4f4f4);
 }
 
 .calendar-nav-info {
   font-size: 18px;
+  color: var(--calendar-day-color, #5E6366);
   font-weight: bold;
+  flex-grow: 1; /* This will allow the month/year section to grow and occupy the available space */
+  text-align: center; /* This ensures month and year are centered */
 }
 
+.calendar-nav-info.right-align {
+  text-align: right;
+}
+
+.calendar-nav-info.left-align {
+  text-align: left;
+}

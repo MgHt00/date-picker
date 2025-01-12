@@ -43,8 +43,9 @@ export const calendarManager = {
 
       // Create the previous button
       const prevButton = domUtils.createElement(document, 'button');
-      displayUtils.addClass(prevButton, 'calendar-nav-button');
-      displayUtils.addTextContent(prevButton, '<');
+      displayUtils
+        .addMultipleClass(prevButton, ['calendar-nav-button', 'poppins-thin'])
+        .addTextContent(prevButton, '<');
 
       // Remove any existing event listener before adding a new one
       prevButton.removeEventListener('click', changeMonth);
@@ -56,17 +57,20 @@ export const calendarManager = {
 
       // Display month and year
       const currentMonth = domUtils.createElement(document, 'span');
-      displayUtils.addClass(currentMonth, 'calendar-nav-info');
-      displayUtils.addTextContent(currentMonth, formattedMonth);
+      displayUtils
+        .addMultipleClass(currentMonth, ['calendar-nav-info', 'right-align', 'poppins-regular'])
+        .addTextContent(currentMonth, formattedMonth);
 
       const currentYear = domUtils.createElement(document, 'span');
-      displayUtils.addClass(currentYear, 'calendar-nav-info');
-      displayUtils.addTextContent(currentYear, year);
+      displayUtils
+        .addMultipleClass(currentYear, ['calendar-nav-info', 'left-align', 'poppins-regular'])
+        .addTextContent(currentYear, year);
 
       // Create the next button
       const nextButton = domUtils.createElement(document, 'button');
-      displayUtils.addClass(nextButton, 'calendar-nav-button');
-      displayUtils.addTextContent(nextButton, '>');
+      displayUtils
+        .addMultipleClass(nextButton, ['calendar-nav-button', 'poppins-thin'])
+        .addTextContent(nextButton, '>');
       
       // Remove any existing event listener before adding a new one
       nextButton.removeEventListener('click', changeMonth);
