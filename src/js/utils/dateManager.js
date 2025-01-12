@@ -19,7 +19,6 @@ export class DateManager {
   }
 
   highlightSelectedDay(selectedDay) {
-    console.info("highlightSelectedDay(), selectedDay:", selectedDay);
     const selectedDOM = document.querySelector(`#${selectedDay}`);
     displayUtils.addClass(selectedDOM, 'selected-day');
   }

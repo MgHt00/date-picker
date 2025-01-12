@@ -13,7 +13,7 @@ export const helpers = {
       console.error("Invalid calendar container");
       return;
     }
-
+    
     calendarContainer.classList.toggle('visible');
 
     const currentMonth = new Date().getMonth(); // Current month (0-11)

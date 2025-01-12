@@ -1,7 +1,15 @@
 .hidden {
-  display: none;
+  opacity: 0;
+  position: absolute;
+  pointer-events: none;
 }
 
 .visible {
-  display: block;
+  opacity: 1;
+  position: relative;
+  pointer-events: auto;
+}
+
+.fade {
+  transition: opacity 0.5s ease-in-out;
 }
