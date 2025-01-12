@@ -13,7 +13,7 @@ html {
 .calendar-container {
   display: none; /* Initially hidden */
   position: absolute;
-  top: 70px;
+  top: 76px;
   right: 0;
   font-size: 11px;
   background-color: white;
@@ -51,6 +51,19 @@ html {
   gap: 4px;
   padding: 7px 5px;
   width: 100%;
+  box-sizing: border-box;
+}
+
+.day-of-week {
+  font-weight: bold;
+  text-align: center;
+  width: 33px;
+  height: 33px;
+  line-height: 33px;
+  /*border-radius: 50%;
+  background-color: var(--calendar-day-background, #f9f9f9);*/
+  color: var(--calendar-day-color, #5E6366);
+  cursor: pointer;
   box-sizing: border-box;
 }
 

@@ -113,7 +113,7 @@ export const calendarManager = {
       daysOfWeek.forEach(day => {
         const dayElement = domUtils.createElement(document, 'div');
         displayUtils
-          .addClass(dayElement, 'calendar-day')
+          .addClass(dayElement, 'day-of-week')
           .addTextContent(dayElement, day)
         headerRow.appendChild(dayElement);
       });
